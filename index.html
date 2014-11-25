@@ -33,6 +33,9 @@
             font-size: 1em;
             margin-bottom: 8em;
         }
+        #congrats {
+            margin-top: 13em;
+        }
 
     </style>
     <title>Planet3/art//news</title>
@@ -113,11 +116,23 @@
             currentPiece = null;
             currentDropPiece = null;
             stage.drawImage(img, 0, 0, puzzleWidth, puzzleHeight, 0, 0, puzzleWidth, puzzleHeight);
+            console.log(levelCounter);
             if (levelCounter === 1) {
                 createTitle("Click to Start");
                 buildPieces();
                 //resets movesCounter between levels
                 movesCounter = 0;
+            } else if (levelCounter === 2){
+                setTimeout(function() {
+                    createDomMessage("<p id='congrats' class='deleteMe'>Congratulations! You finished Level " + 
+                    (levelCounter - 1) + " in " + movesCounter + " moves!</p>");
+                    createDomMessage("<p class='deleteMe'>Ready for the Next Puzzle?</p>");
+
+                    buildPieces();
+                    //resets movesCounter between levels
+                    movesCounter = 0;
+                }, 500)
+                createTitle("Click to Start");
             } else {
                 createDomMessage("<p id='artname' class='deleteMe'>A Mother and Child</p>");
                 createDomMessage("<p id='name' class='deleteMe'>Albert Gleizes, 1881 - 1953</p>");
